@@ -15,4 +15,5 @@ export default defineCliConfig({
     projectId,
     dataset,
   },
+  studioHost: 'sanity-template-aovd',
 })
