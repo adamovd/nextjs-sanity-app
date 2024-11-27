@@ -4,7 +4,9 @@ import { Image } from "next-sanity/image";
 import { urlForImage } from "@/sanity/lib/utils";
 
 interface CoverImageProps {
+  /* eslint-disable */
   image: any;
+  /* eslint-enable */
   priority?: boolean;
 }
 

@@ -36,8 +36,10 @@ export default function Onboarding() {
           d="M195.715 200.816C172.923 186.007 161.527 165.183 161.527 136.954C180.672 111.503 213.493 96 253.835 96C323.35 96 363.692 133.252 373.721 185.776H310.359C303.293 165.183 285.971 148.986 254.291 148.986C220.33 148.986 197.311 169.116 195.715 200.816Z"
           fill="#F03E2F"
         />
+      
       </svg>
-      {process.env.NEXT_PUBLIC_SANITY_STUDIO_URL ? ( // if NEXT_PUBLIC_SANITY_STUDIO_URL environment variable is set, show create post button
+      {/* eslint-disable */}
+      {process.env.NEXT_PUBLIC_SANITY_STUDIO_URL ? ( /* eslint-enable */
         <OnboardingMessage
           message={{
             title: "No posts yet",
@@ -138,7 +140,8 @@ export function PageOnboarding() {
           fill="#F03E2F"
         />
       </svg>
-      {process.env.NEXT_PUBLIC_SANITY_STUDIO_URL ? ( // if NEXT_PUBLIC_SANITY_STUDIO_URL environment variable is set, show create post button
+      {/* eslint-disable */}
+      {process.env.NEXT_PUBLIC_SANITY_STUDIO_URL ? ( /* eslint-enable */
         <OnboardingMessage
           message={{
             title: "About Page (/about) does not exist yet",

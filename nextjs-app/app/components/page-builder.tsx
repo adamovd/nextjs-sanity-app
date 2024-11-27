@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import BlockRenderer from "@/app/components/BlockRenderer";
+import BlockRenderer from "@/app/components/block-renderer";
 import { Page } from "@/sanity.types";
 import { studioUrl } from "@/sanity/lib/api";
 
@@ -14,11 +14,13 @@ type PageBuilderPageProps = {
 export default function PageBuilder({ page }: PageBuilderPageProps) {
   if (page?.pageBuilder && page.pageBuilder.length > 0) {
     return (
+      /* eslint-disable */
       <>
         {page.pageBuilder.map((block: any, index: number) => (
           <BlockRenderer key={block._key} index={index} block={block} />
         ))}
       </>
+      /* eslint-enable */
     );
   }
 

@@ -1,9 +1,9 @@
+import { Link as SanityLink } from "@/sanity.types";
+import { linkResolver } from "@/sanity/lib/utils";
 import Link from "next/link";
 
-import { linkResolver } from "@/sanity/lib/utils";
-
 interface ResolvedLinkProps {
-  link: any;
+  link: SanityLink | undefined;
   children: React.ReactNode;
   className?: string;
 }
@@ -13,9 +13,7 @@ export default function ResolvedLink({
   children,
   className,
 }: ResolvedLinkProps) {
-  // resolveLink() is used to determine the type of link and return the appropriate URL.
   const resolvedLink = linkResolver(link);
-
   if (typeof resolvedLink === "string") {
     return (
       <Link

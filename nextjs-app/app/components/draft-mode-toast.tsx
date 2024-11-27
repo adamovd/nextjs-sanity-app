@@ -1,5 +1,6 @@
 "use client";
 
+import { disableDraftMode } from "@/app/actions";
 import {
   useDraftModeEnvironment,
   useIsPresentationTool,
@@ -7,7 +8,6 @@ import {
 import { useRouter } from "next/navigation";
 import { useEffect, useTransition } from "react";
 import { toast } from "sonner";
-import { disableDraftMode } from "@/app/actions";
 
 export default function DraftModeToast() {
   const isPresentationTool = useIsPresentationTool();

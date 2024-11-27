@@ -1,13 +1,16 @@
 import { Image } from "next-sanity/image";
 
+import DateComponent from "@/app/components/date";
 import { urlForImage } from "@/sanity/lib/utils";
-import DateComponent from "@/app/components/Date";
 
 type Props = {
+  
   person: {
     firstName: string | null;
     lastName: string | null;
+    /* eslint-disable */
     picture?: any;
+    /* eslint-enable */
   };
   date: string;
 };

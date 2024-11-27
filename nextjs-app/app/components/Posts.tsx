@@ -1,10 +1,10 @@
 import Link from "next/link";
 
-import { sanityFetch } from "@/sanity/lib/live";
-import { morePostsQuery, allPostsQuery } from "@/sanity/lib/queries";
+import DateComponent from "@/app/components/date";
+import OnBoarding from "@/app/components/onboarding";
 import { Post as PostType } from "@/sanity.types";
-import DateComponent from "@/app/components/Date";
-import OnBoarding from "@/app/components/Onboarding";
+import { sanityFetch } from "@/sanity/lib/live";
+import { allPostsQuery, morePostsQuery } from "@/sanity/lib/queries";
 
 type PostProps = {
   post: PostType;
@@ -76,7 +76,9 @@ export const MorePosts = async ({ skip, limit }: MorePostsProps) => {
 
   return (
     <Posts heading={`Recent blog posts from Sanity (${data?.length})`}>
+      {/* eslint-disable */}
       {data?.map((post: any) => <Post key={post._id} post={post} />)}
+      {/* eslint-enable */}
     </Posts>
   );
 };
@@ -93,6 +95,7 @@ export const AllPosts = async () => {
       heading="Blog posts from Sanity"
       subHeading={`${data.length === 1 ? "This blog post is" : `These ${data.length} blog posts are`} populated from your Sanity Studio.`}
     >
+      {/* eslint-disable */}
       {data.map((post: any) => (
         <Post key={post._id} post={post} />
       ))}

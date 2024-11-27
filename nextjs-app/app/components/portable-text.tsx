@@ -10,11 +10,11 @@
 
 import {
   PortableText,
-  type PortableTextComponents,
   type PortableTextBlock,
+  type PortableTextComponents,
 } from "next-sanity";
 
-import ResolvedLink from "@/app/components/ResolvedLink";
+import ResolvedLink from "@/app/components/resolved-link";
 
 export default function CustomPortableText({
   className,

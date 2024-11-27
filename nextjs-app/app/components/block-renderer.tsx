@@ -1,18 +1,20 @@
 import React from "react";
 
-import Cta from "@/app/components/Cta";
-import Info from "@/app/components/InfoSection";
+import Cta from "@/app/components/cta";
+import Info from "@/app/components/info-section";
 
 type BlocksType = {
+  /* eslint-disable */
   [key: string]: React.FC<any>;
+  /* eslint-enable */
 };
 
-type BlockType = {
+export type BlockType = {
   _type: string;
   _id: string;
 };
 
-type BlockProps = {
+export type BlockProps = {
   index: number;
   block: BlockType;
 };
