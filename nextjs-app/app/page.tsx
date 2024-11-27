@@ -1,5 +1,5 @@
 import { AllPosts } from "@/app/components/posts";
-import { TEvent } from "@/models/types";
+import { Event } from "@/sanity.types";
 import { client } from "@/sanity/lib/client";
 import { sanityFetch } from "@/sanity/lib/live";
 import imageUrlBuilder from "@sanity/image-url";
@@ -14,6 +14,8 @@ const EVENTS_QUERY = defineQuery(`*[
   && defined(slug.current)
 ]{_id, title, slug, date, eventType, image, venue}|order(date desc)`);
 
+
+
 const { projectId, dataset } = client.config();
 const urlFor = (source: SanityImageSource) =>
   projectId && dataset
@@ -23,25 +25,30 @@ const urlFor = (source: SanityImageSource) =>
 export default async function Page() {
   const { data: events } = await sanityFetch({ query: EVENTS_QUERY });
 
+  
+  
+
   return (
     <>
       <div className="border-t border-gray-10">
         <div className="container">
           <ul className="grid grid-cols-1 gap-12 lg:grid-cols-2">
-            {events.map((event: TEvent) => (
+            {events.map((event: Event) => (
               <li className="bg-white p-4 rounded-lg" key={event._id}>
                 <Link
                   className="hover:underline"
                   href={`/events/${event?.slug?.current}`}
                 >
+                  {event.image ? 
                   <Image
                     src={urlFor(event.image)?.width(550).height(310).url() || ""}
-                    alt={event.image.alt}
+                    alt={event.image?.alt || event.title || "image"}
                     height={500}
                     width={500}
                   />
+                  : null}
+                  
                   <h2 className="text-xl font-semibold">{event?.title}</h2>
-                  {event.venue ? <small>{event.venue.name}</small> : null}
                   {event?.date && (
                     <p className="text-gray-500">
                       {new Date(event.date).toLocaleDateString()}
