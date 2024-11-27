@@ -1742,7 +1742,7 @@
   resolved "https://registry.yarnpkg.com/@sanity/icons/-/icons-1.3.10.tgz#df934a94ae6669fe6b15515d800afb221cba0498"
   integrity sha512-5wVG/vIiGuGrSmq+Bl3PY7XDgQrGv0fyHdJI64FSulnr2wH3NMqZ6C59UFxnrZ93sr7kOt0zQFoNv2lkPBi0Cg==
 
-"@sanity/icons@^2.11.7", "@sanity/icons@^2.11.8":
+"@sanity/icons@^2.0.0", "@sanity/icons@^2.11.7", "@sanity/icons@^2.11.8":
   version "2.11.8"
   resolved "https://registry.yarnpkg.com/@sanity/icons/-/icons-2.11.8.tgz#90a38b7d23b5c9f728a6e7ebdac80c3f76c64c35"
   integrity sha512-C4ViXtk6eyiNTQ5OmxpfmcK6Jw+LLTi9zg9XBUD15DzC4xTHaGW9SVfUa43YtPGs3WC3M0t0K59r0GDjh52HIg==
@@ -1914,6 +1914,28 @@
     "@sanity/client" "^6.22.5"
     "@types/react" "^18.3.5"
 
+"@sanity/types@3.65.0":
+  version "3.65.0"
+  resolved "https://registry.yarnpkg.com/@sanity/types/-/types-3.65.0.tgz#8ef07ad693be1be8dcb21565abfba0e8ce12870e"
+  integrity sha512-UHpxt//qXWeNSauOFRzZbtSZ9wRGJ92L/DKzFZBEvAdqZkotKmgl7qgbmXwwOw4Gjm1bmf5H/14cKoB+Af0mZw==
+  dependencies:
+    "@sanity/client" "^6.22.5"
+    "@types/react" "^18.3.5"
+
+"@sanity/ui@^1.0 || ^2.0":
+  version "2.8.25"
+  resolved "https://registry.yarnpkg.com/@sanity/ui/-/ui-2.8.25.tgz#1e3c0044264bf5db3c07b13e162db2ad18eecad2"
+  integrity sha512-DOelQQq5htbV9THZwcASdHAiA2wdPL/zuvrrurC8PPMGzMxHJqqMjdXLrd2zdckTgEjXcgn6rPEFZ/YY6v5CSQ==
+  dependencies:
+    "@floating-ui/react-dom" "^2.1.2"
+    "@sanity/color" "^3.0.6"
+    "@sanity/icons" "^3.4.0"
+    csstype "^3.1.3"
+    framer-motion "11.0.8"
+    react-compiler-runtime "19.0.0-beta-df7b47d-20241124"
+    react-refractor "^2.2.0"
+    use-effect-event "^1.0.2"
+
 "@sanity/ui@^2.1.0", "@sanity/ui@^2.1.2", "@sanity/ui@^2.8.23", "@sanity/ui@^2.8.24":
   version "2.8.24"
   resolved "https://registry.yarnpkg.com/@sanity/ui/-/ui-2.8.24.tgz#ebab092c9ffb1d2597cef6edf0f03a5901ccbd93"
@@ -1946,6 +1968,17 @@
   dependencies:
     "@sanity/client" "^6.22.5"
     "@sanity/types" "3.64.3"
+    get-random-values-esm "1.0.2"
+    moment "^2.30.1"
+    rxjs "^7.8.1"
+
+"@sanity/util@^3.0.0":
+  version "3.65.0"
+  resolved "https://registry.yarnpkg.com/@sanity/util/-/util-3.65.0.tgz#a836abd58dcae62936f28ea934725e8697774339"
+  integrity sha512-AV2akGXpTyD0HLPtYh5qidjmiuCZzvgWVfLLS3cToyhAtH5nebPo+9VroU+hQsIKN6SOAN0qqihI+yWsADOYTw==
+  dependencies:
+    "@sanity/client" "^6.22.5"
+    "@sanity/types" "3.65.0"
     get-random-values-esm "1.0.2"
     moment "^2.30.1"
     rxjs "^7.8.1"
@@ -3392,6 +3425,11 @@ direction@^1.0.4:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/direction/-/direction-1.0.4.tgz#2b86fb686967e987088caf8b89059370d4837442"
   integrity sha512-GYqKi1aH7PJXxdhTeZBFrg8vUBeKXi+cNprXsC1kpJcbcVnV9wBsrOu1cQEdG0WeQwlfHiy3XvnKfIrJ2R0NzQ==
+
+dlv@^1.1.3:
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/dlv/-/dlv-1.1.3.tgz#5c198a8a11453596e751494d49874bc7732f2e79"
+  integrity sha512-+HlytyjlPKnIG8XuRG8WvmBP8xs8P71y+SKKS6ZXWoEgLuePxtDoUEiH7WkdePWrQ5JBpE6aoVqfZfJUQkjXwA==
 
 doc-path@4.1.1:
   version "4.1.1"
@@ -6006,6 +6044,11 @@ react-compiler-runtime@19.0.0-beta-0dec889-20241115:
   resolved "https://registry.yarnpkg.com/react-compiler-runtime/-/react-compiler-runtime-19.0.0-beta-0dec889-20241115.tgz#d316f7c8205d131000203ce51a0ce23c1822ac7d"
   integrity sha512-dL5zzfEvM2dyDnaACP/HkY57/sDPR4R1Q9gPjEFk/3qO7coNc76W0dm3bRypTBNf9sGDuBI+HZSdusVUIbep4Q==
 
+react-compiler-runtime@19.0.0-beta-df7b47d-20241124:
+  version "19.0.0-beta-df7b47d-20241124"
+  resolved "https://registry.yarnpkg.com/react-compiler-runtime/-/react-compiler-runtime-19.0.0-beta-df7b47d-20241124.tgz#0b0585bf4d97682c83c5d7b5685a2866e86c1ef3"
+  integrity sha512-HLFbEf5rEhynZNxI/f1y26Hw0SCvFWh9aS0gCaDndak202oOAvRhy0qsUhmVyaeuRYqIxvPeltMvqDfvO+9/Fw==
+
 react-copy-to-clipboard@^5.0.4, react-copy-to-clipboard@^5.1.0:
   version "5.1.0"
   resolved "https://registry.yarnpkg.com/react-copy-to-clipboard/-/react-copy-to-clipboard-5.1.0.tgz#09aae5ec4c62750ccb2e6421a58725eabc41255c"
@@ -6438,6 +6481,30 @@ sanity-plugin-asset-source-unsplash@^3.0.1:
     react-infinite-scroll-component "6.1.0"
     react-photo-album "2.3.1"
     rxjs "^7.8.1"
+
+sanity-plugin-documents-pane@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/sanity-plugin-documents-pane/-/sanity-plugin-documents-pane-2.3.0.tgz#7669a0c0f27b8f4b595fbe8a587b5fc6bd6b776a"
+  integrity sha512-2gDYMW9UonENGcSAsAVlnGo6GKBDIAsZY7fpMDZ3/1le0qKAKFnXTbmov7fCCW6uNI+3VNQ2xhhicscr8iEgTQ==
+  dependencies:
+    "@sanity/icons" "^2.0.0"
+    "@sanity/incompatible-plugin" "^1.0.4"
+    "@sanity/ui" "^1.0 || ^2.0"
+    "@sanity/util" "^3.0.0"
+    "@sanity/uuid" "^3.0.1"
+    dlv "^1.1.3"
+    react-fast-compare "^3.2.0"
+    rxjs "^7.0.0"
+    sanity-plugin-utils "^1.6.3"
+
+sanity-plugin-utils@^1.6.3:
+  version "1.6.6"
+  resolved "https://registry.yarnpkg.com/sanity-plugin-utils/-/sanity-plugin-utils-1.6.6.tgz#0cf99b8498f0d13d4ca3920c46e5fb275779ace3"
+  integrity sha512-jur0dx7hXRbib0siKOJC9+9XuxjNNb3cQDlE/T6egDytInWkI3peEOhRFTg0KtXMtRvGDEvtrPhYEnGvsYQG3w==
+  dependencies:
+    "@sanity/icons" "^2.11.8"
+    "@sanity/incompatible-plugin" "^1.0.4"
+    styled-components "^6.1.6"
 
 sanity@^3.63.0:
   version "3.64.3"
@@ -6977,7 +7044,7 @@ style-mod@^4.0.0, style-mod@^4.1.0:
   resolved "https://registry.yarnpkg.com/style-mod/-/style-mod-4.1.2.tgz#ca238a1ad4786520f7515a8539d5a63691d7bf67"
   integrity sha512-wnD1HyVqpJUI2+eKZ+eo1UwghftP6yuFheBqqe+bWCotBjC2K1YnteJILRMs3SM4V/0dLEW1SC27MWP5y+mwmw==
 
-styled-components@^6.1.13:
+styled-components@^6.1.13, styled-components@^6.1.6:
   version "6.1.13"
   resolved "https://registry.yarnpkg.com/styled-components/-/styled-components-6.1.13.tgz#2d777750b773b31469bd79df754a32479e9f475e"
   integrity sha512-M0+N2xSnAtwcVAQeFEsGWFFxXDftHUD7XrKla06QbpUMmbmtFBMMTcKWvFXtWxuD5qQkB8iU5gk6QASlx2ZRMw==
