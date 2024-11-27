@@ -1,4 +1,3 @@
-import { AllPosts } from "@/app/components/posts";
 import { Event } from "@/sanity.types";
 import { client } from "@/sanity/lib/client";
 import { sanityFetch } from "@/sanity/lib/live";
@@ -8,6 +7,7 @@ import { defineQuery } from "next-sanity";
 import Image from "next/image";
 import Link from "next/link";
 import { Suspense } from "react";
+import { AllPosts } from "./components/posts";
 
 const EVENTS_QUERY = defineQuery(`*[
   _type == "event"
