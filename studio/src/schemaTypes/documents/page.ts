@@ -41,6 +41,13 @@ export default defineType({
       type: 'string',
     }),
     defineField({
+      name: 'author',
+      title: 'Author',
+      type: 'reference',
+      to: [{type: 'person'}],
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
       name: 'pageBuilder',
       title: 'Page builder',
       type: 'array',

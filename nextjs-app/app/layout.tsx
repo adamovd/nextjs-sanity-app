@@ -2,14 +2,14 @@ import "./globals.css";
 
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
+import { toPlainText, VisualEditing } from "next-sanity";
 import { Inter } from "next/font/google";
 import { draftMode } from "next/headers";
-import { VisualEditing, toPlainText } from "next-sanity";
 import { Toaster } from "sonner";
 
-import DraftModeToast from "@/app/components/DraftModeToast";
-import Footer from "@/app/components/Footer";
-import Header from "@/app/components/Header";
+import DraftModeToast from "@/app/components/draft-mode-toast";
+import Footer from "@/app/components/footer";
+import Header from "@/app/components/header";
 import * as demo from "@/sanity/lib/demo";
 import { sanityFetch, SanityLive } from "@/sanity/lib/live";
 import { settingsQuery } from "@/sanity/lib/queries";

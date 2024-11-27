@@ -16,6 +16,7 @@ import {
   type DocumentLocation,
 } from 'sanity/presentation'
 import {assist} from '@sanity/assist'
+import {defaultDocumentNode} from './src/structure/default-document-node'
 
 // Environment variables for project configuration
 const projectId = process.env.SANITY_STUDIO_PROJECT_ID || 'your-projectID'
@@ -116,7 +117,8 @@ export default defineConfig({
       },
     }),
     structureTool({
-      structure, // Custom studio structure configuration, imported from ./src/structure.ts
+      structure,
+      defaultDocumentNode,
     }),
     // Additional plugins for enhanced functionality
     unsplashImageAsset(),
