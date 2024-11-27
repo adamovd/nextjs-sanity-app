@@ -1,3 +1,7 @@
 {
-  "framework": "nextjs"
+  "buildCommand": "next build",
+  "framework": "nextjs",
+  "routes": [
+    { "src": "/components/(.*)", "dest": "/components/$1" }
+  ]
 }

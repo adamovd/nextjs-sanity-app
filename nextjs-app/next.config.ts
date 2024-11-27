@@ -11,6 +11,10 @@ const nextConfig: NextConfig = {
       { protocol: "https", hostname: "placehold.co" },
     ],
   },
+   webpack: (config) => {
+    config.resolve.caseSensitive = true;
+    return config;
+  }
 };
 
 export default nextConfig;
