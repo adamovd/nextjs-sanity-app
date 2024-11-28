@@ -1,9 +1,9 @@
 import {HomeIcon} from '@sanity/icons'
 import {defineField, defineType} from 'sanity'
 
-export const venueType = defineType({
-  name: 'venue',
-  title: 'Venue',
+export default defineType({
+  name: 'venues',
+  title: 'Venues',
   type: 'document',
   icon: HomeIcon,
   groups: [

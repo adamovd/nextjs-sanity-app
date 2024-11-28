@@ -1,10 +1,9 @@
 import {CalendarIcon} from '@sanity/icons'
 import {defineField, defineType} from 'sanity'
-import address from '../objects/address'
 
 export default defineType({
-  name: 'event',
-  title: 'Event',
+  name: 'events',
+  title: 'Events',
   type: 'document',
   icon: CalendarIcon,
 
@@ -18,7 +17,7 @@ export default defineType({
       type: 'slug',
       options: {source: 'title'},
       validation: (rule) => rule.required().error(`Required to generate a page on the website`),
-      hidden: ({document}) => !document?.name,
+      hidden: ({document}) => !document?.title,
     }),
     defineField({
       name: 'eventType',
@@ -42,6 +41,7 @@ export default defineType({
           imageDescriptionField: 'alt',
         },
       },
+
       fields: [
         {
           name: 'alt',
@@ -58,14 +58,23 @@ export default defineType({
             })
           },
         },
+        {
+          name: 'layout',
+          type: 'string',
+          title: 'Layout',
+          description: 'Choose between round and square layouts for the event cover image.',
+          options: {
+            list: ['round', 'square'],
+            layout: 'radio',
+          },
+        },
       ],
-      validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'venue',
       title: 'Venue',
       type: 'reference',
-      to: [{type: 'venue'}],
+      to: [{type: 'venues'}],
       readOnly: ({value, document}) => !value && document?.eventType === 'virtual',
       validation: (rule) =>
         rule.custom((value, context) => {
@@ -80,7 +89,7 @@ export default defineType({
   preview: {
     select: {
       name: 'title',
-      venue: 'venue.name',
+      venue: 'venues.name',
       date: 'date',
       image: 'image',
     },

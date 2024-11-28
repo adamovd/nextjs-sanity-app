@@ -1,5 +1,5 @@
+import {CogIcon} from '@sanity/icons'
 import type {StructureResolver} from 'sanity/structure'
-import {CalendarIcon, PinIcon, CogIcon} from '@sanity/icons'
 
 /**
  * Structure builder is useful whenever you want to control how documents are grouped and
@@ -9,7 +9,7 @@ import {CalendarIcon, PinIcon, CogIcon} from '@sanity/icons'
 
 export const structure: StructureResolver = (S: any) =>
   S.list()
-    .title('Website Content')
+    .title('Base')
     .items([
       // Filter out "AI Assist Context" and "Settings" content from the list of content types
       ...S.documentTypeListItems().filter(
@@ -20,20 +20,4 @@ export const structure: StructureResolver = (S: any) =>
         .title('Site Settings')
         .child(S.document().schemaType('settings').documentId('siteSettings'))
         .icon(CogIcon),
-    ])
-    .id('root')
-    .title('Content')
-    .items([
-      S.listItem()
-        .title('Upcoming Events')
-        .schemaType('event')
-        .icon(CalendarIcon)
-        .child(S.documentList().title('Upcoming Events').filter('date >= now()')),
-      S.listItem()
-        .title('Past Events')
-        .schemaType('event')
-        .icon(CalendarIcon)
-        .child(S.documentList().title('Past Events').filter('date < now()')),
-      S.divider(),
-      S.documentTypeListItem('venue').title('Venues').icon(PinIcon),
     ])
