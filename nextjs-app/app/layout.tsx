@@ -1,21 +1,21 @@
-import "./globals.css";
-
-import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
-import { toPlainText, VisualEditing } from "next-sanity";
 import { Inter } from "next/font/google";
 import { draftMode } from "next/headers";
+
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import { VisualEditing, toPlainText } from "next-sanity";
 import { Toaster } from "sonner";
 
 import DraftModeToast from "@/app/components/draft-mode-toast";
-
 import * as demo from "@/sanity/lib/demo";
-import { sanityFetch, SanityLive } from "@/sanity/lib/live";
+import { SanityLive, sanityFetch } from "@/sanity/lib/live";
 import { settingsQuery } from "@/sanity/lib/queries";
 import { resolveOpenGraphImage } from "@/sanity/lib/utils";
+
 import { handleError } from "./client-utils";
 import Footer from "./components/footer";
 import Header from "./components/header";
+import "./globals.css";
 
 /**
  * Generate metadata for the page.
