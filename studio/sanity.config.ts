@@ -3,19 +3,21 @@
  * Learn more: https://www.sanity.io/docs/configuration
  */
 
-import {defineConfig} from 'sanity'
-import {structureTool} from 'sanity/structure'
+import {assist} from '@sanity/assist'
 import {visionTool} from '@sanity/vision'
-import {schemaTypes} from './src/schemaTypes'
-import {structure} from './src/structure'
+import {defineConfig} from 'sanity'
 import {unsplashImageAsset} from 'sanity-plugin-asset-source-unsplash'
+import {media, mediaAssetSource} from 'sanity-plugin-media'
+import {muxInput} from 'sanity-plugin-mux-input'
 import {
-  presentationTool,
   defineDocuments,
   defineLocations,
+  presentationTool,
   type DocumentLocation,
 } from 'sanity/presentation'
-import {assist} from '@sanity/assist'
+import {structureTool} from 'sanity/structure'
+import {schemaTypes} from './src/schemaTypes'
+import {structure} from './src/structure'
 import {defaultDocumentNode} from './src/structure/default-document-node'
 
 // Environment variables for project configuration
@@ -48,7 +50,7 @@ function resolveHref(documentType?: string, slug?: string): string | undefined {
 // Main Sanity configuration
 export default defineConfig({
   name: 'default',
-  title: 'Clean Next.js + Sanity',
+  title: 'Sanity Template',
 
   projectId,
   dataset,
@@ -124,8 +126,28 @@ export default defineConfig({
     unsplashImageAsset(),
     assist(),
     visionTool(),
+    muxInput(),
+    media({
+      creditLine: {
+        enabled: true,
+        // boolean - enables an optional "Credit Line" field in the plugin.
+        // Used to store credits e.g. photographer, licence information
+        excludeSources: ['unsplash'],
+        // string | string[] - when used with 3rd party asset sources, you may
+        // wish to prevent users overwriting the creditLine based on the `source.name`
+      },
+      maximumUploadSize: 10000000,
+      // number - maximum file size (in bytes) that can be uploaded through the plugin interface
+    }),
   ],
-
+  form: {
+    // Don't use this plugin when selecting files only (but allow all other enabled asset sources)
+    file: {
+      assetSources: (previousAssetSources) => {
+        return previousAssetSources.filter((assetSource) => assetSource !== mediaAssetSource)
+      },
+    },
+  },
   // Schema configuration, imported from ./src/schemaTypes/index.ts
   schema: {
     types: schemaTypes,
