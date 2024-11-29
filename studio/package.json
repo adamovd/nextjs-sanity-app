@@ -26,6 +26,8 @@
     "sanity": "^3.63.0",
     "sanity-plugin-asset-source-unsplash": "^3.0.1",
     "sanity-plugin-documents-pane": "^2.3.0",
+    "sanity-plugin-media": "^2.3.2",
+    "sanity-plugin-mux-input": "^2.4.0",
     "styled-components": "^6.1.13"
   },
   "devDependencies": {

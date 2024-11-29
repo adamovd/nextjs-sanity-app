@@ -71,6 +71,16 @@ export type Geopoint = {
   alt?: number;
 };
 
+export type FaqSection = {
+  _type: "faqSection";
+  faqs?: Array<{
+    question: string;
+    answer: string;
+    _type: "faqItem";
+    _key: string;
+  }>;
+};
+
 export type CallToAction = {
   _type: "callToAction";
   heading?: string;
@@ -169,14 +179,14 @@ export type BlockContent = Array<{
   _key: string;
 }>;
 
-export type Event = {
+export type Events = {
   _id: string;
-  _type: "event";
+  _type: "events";
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
   title?: string;
-  slug?: Slug;
+  slug: Slug;
   eventType?: "in-person" | "virtual";
   date?: string;
   image?: {
@@ -189,19 +199,20 @@ export type Event = {
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     alt?: string;
+    layout?: "round" | "square";
     _type: "image";
   };
   venue?: {
     _ref: string;
     _type: "reference";
     _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "venue";
+    [internalGroqTypeReferenceTo]?: "venues";
   };
 };
 
-export type Venue = {
+export type Venues = {
   _id: string;
-  _type: "venue";
+  _type: "venues";
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
@@ -218,11 +229,11 @@ export type Page = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  name?: string;
-  slug?: Slug;
-  heading?: string;
+  name: string;
+  slug: Slug;
+  heading: string;
   subheading?: string;
-  author?: {
+  author: {
     _ref: string;
     _type: "reference";
     _weak?: boolean;
@@ -235,6 +246,18 @@ export type Page = {
     | ({
         _key: string;
       } & InfoSection)
+    | {
+        asset?: {
+          _ref: string;
+          _type: "reference";
+          _weak?: boolean;
+          [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        _type: "image";
+        _key: string;
+      }
   >;
 };
 
@@ -244,11 +267,11 @@ export type Post = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  title?: string;
-  slug?: Slug;
+  title: string;
+  slug: Slug;
   content?: BlockContent;
   excerpt?: string;
-  coverImage?: {
+  coverImage: {
     asset?: {
       _ref: string;
       _type: "reference";
@@ -275,9 +298,9 @@ export type Person = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  firstName?: string;
-  lastName?: string;
-  picture?: {
+  firstName: string;
+  lastName: string;
+  picture: {
     asset?: {
       _ref: string;
       _type: "reference";
@@ -293,7 +316,7 @@ export type Person = {
 
 export type Slug = {
   _type: "slug";
-  current?: string;
+  current: string;
   source?: string;
 };
 
@@ -303,7 +326,7 @@ export type Settings = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  title?: string;
+  title: string;
   description?: Array<{
     children?: Array<{
       marks?: Array<string>;
@@ -314,7 +337,7 @@ export type Settings = {
     style?: "normal";
     listItem?: never;
     markDefs?: Array<{
-      href?: string;
+      href: string;
       _type: "link";
       _key: string;
     }>;
@@ -434,7 +457,7 @@ export type SanityAssistOutputField = {
 
 export type SanityAssistInstructionContext = {
   _type: "sanity.assist.instruction.context";
-  reference?: {
+  reference: {
     _ref: string;
     _type: "reference";
     _weak?: boolean;
@@ -467,7 +490,7 @@ export type AssistInstructionContext = {
 
 export type SanityAssistInstructionUserInput = {
   _type: "sanity.assist.instruction.userInput";
-  message?: string;
+  message: string;
   description?: string;
 };
 
@@ -535,12 +558,13 @@ export type AllSanitySchemaTypes =
   | SanityImageDimensions
   | SanityFileAsset
   | Geopoint
+  | FaqSection
   | CallToAction
   | Link
   | InfoSection
   | BlockContent
-  | Event
-  | Venue
+  | Events
+  | Venues
   | Page
   | Post
   | Person
@@ -573,7 +597,7 @@ export type SettingsQueryResult = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  title?: string;
+  title: string;
   description?: Array<{
     children?: Array<{
       marks?: Array<string>;
@@ -584,7 +608,7 @@ export type SettingsQueryResult = {
     style?: "normal";
     listItem?: never;
     markDefs?: Array<{
-      href?: string;
+      href: string;
       _type: "link";
       _key: string;
     }>;
@@ -607,12 +631,12 @@ export type SettingsQueryResult = {
   };
 } | null;
 // Variable: getPageQuery
-// Query: *[_type == 'page' && slug.current == $slug][0]{    _id,    name,    slug,    heading,    subheading,    "pageBuilder": pageBuilder[]{      ...,      _type == "callToAction" => {        ...,          link {      ...,      _type == "link" => {        "page": page->slug.current,        "post": post->slug.current        }      },      }    },  }
+// Query: *[_type == 'page' && slug.current == $slug][0]{    _id,    name,    slug,    heading,    subheading,    "pageBuilder": pageBuilder[]{      ...,      _type == "callToAction"  => {        ...,          link {      ...,      _type == "link" => {        "page": page->slug.current,        "post": post->slug.current        }      },      }    },  }
 export type GetPageQueryResult = {
   _id: string;
-  name: string | null;
-  slug: Slug | null;
-  heading: string | null;
+  name: string;
+  slug: Slug;
+  heading: string;
   subheading: string | null;
   pageBuilder: Array<
     | {
@@ -629,6 +653,18 @@ export type GetPageQueryResult = {
           post: string | null;
           openInNewTab?: boolean;
         } | null;
+      }
+    | {
+        asset?: {
+          _ref: string;
+          _type: "reference";
+          _weak?: boolean;
+          [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        _type: "image";
+        _key: string;
       }
     | {
         _key: string;
@@ -684,7 +720,7 @@ export type AllPostsQueryResult = Array<{
   _id: string;
   status: "draft" | "published";
   title: string | "Untitled";
-  slug: string | null;
+  slug: string;
   excerpt: string | null;
   coverImage: {
     asset?: {
@@ -697,11 +733,11 @@ export type AllPostsQueryResult = Array<{
     crop?: SanityImageCrop;
     alt?: string;
     _type: "image";
-  } | null;
+  };
   date: string;
   author: {
-    firstName: string | null;
-    lastName: string | null;
+    firstName: string;
+    lastName: string;
     picture: {
       asset?: {
         _ref: string;
@@ -713,7 +749,7 @@ export type AllPostsQueryResult = Array<{
       crop?: SanityImageCrop;
       alt?: string;
       _type: "image";
-    } | null;
+    };
   } | null;
 }>;
 // Variable: morePostsQuery
@@ -722,7 +758,7 @@ export type MorePostsQueryResult = Array<{
   _id: string;
   status: "draft" | "published";
   title: string | "Untitled";
-  slug: string | null;
+  slug: string;
   excerpt: string | null;
   coverImage: {
     asset?: {
@@ -735,11 +771,11 @@ export type MorePostsQueryResult = Array<{
     crop?: SanityImageCrop;
     alt?: string;
     _type: "image";
-  } | null;
+  };
   date: string;
   author: {
-    firstName: string | null;
-    lastName: string | null;
+    firstName: string;
+    lastName: string;
     picture: {
       asset?: {
         _ref: string;
@@ -751,7 +787,7 @@ export type MorePostsQueryResult = Array<{
       crop?: SanityImageCrop;
       alt?: string;
       _type: "image";
-    } | null;
+    };
   } | null;
 }>;
 // Variable: postQuery
@@ -793,7 +829,7 @@ export type PostQueryResult = {
   _id: string;
   status: "draft" | "published";
   title: string | "Untitled";
-  slug: string | null;
+  slug: string;
   excerpt: string | null;
   coverImage: {
     asset?: {
@@ -806,11 +842,11 @@ export type PostQueryResult = {
     crop?: SanityImageCrop;
     alt?: string;
     _type: "image";
-  } | null;
+  };
   date: string;
   author: {
-    firstName: string | null;
-    lastName: string | null;
+    firstName: string;
+    lastName: string;
     picture: {
       asset?: {
         _ref: string;
@@ -822,24 +858,24 @@ export type PostQueryResult = {
       crop?: SanityImageCrop;
       alt?: string;
       _type: "image";
-    } | null;
+    };
   } | null;
 } | null;
 // Variable: postPagesSlugs
 // Query: *[_type == "post" && defined(slug.current)]  {"slug": slug.current}
 export type PostPagesSlugsResult = Array<{
-  slug: string | null;
+  slug: string;
 }>;
 // Variable: pagesSlugs
 // Query: *[_type == "page" && defined(slug.current)]  {"slug": slug.current}
 export type PagesSlugsResult = Array<{
-  slug: string | null;
+  slug: string;
 }>;
 
 declare module "@sanity/client" {
   interface SanityQueries {
     '*[_type == "settings"][0]': SettingsQueryResult;
-    '\n  *[_type == \'page\' && slug.current == $slug][0]{\n    _id,\n    name,\n    slug,\n    heading,\n    subheading,\n    "pageBuilder": pageBuilder[]{\n      ...,\n      _type == "callToAction" => {\n        ...,\n        \n  link {\n      ...,\n      _type == "link" => {\n        "page": page->slug.current,\n        "post": post->slug.current\n        }\n      }\n,\n      }\n    },\n  }\n': GetPageQueryResult;
+    '\n  *[_type == \'page\' && slug.current == $slug][0]{\n    _id,\n    name,\n    slug,\n    heading,\n    subheading,\n    "pageBuilder": pageBuilder[]{\n      ...,\n      _type == "callToAction"  => {\n        ...,\n        \n  link {\n      ...,\n      _type == "link" => {\n        "page": page->slug.current,\n        "post": post->slug.current\n        }\n      }\n,\n      }\n    },\n  }\n': GetPageQueryResult;
     '\n  *[_type == "post" && defined(slug.current)] | order(date desc, _updatedAt desc) {\n    \n  _id,\n  "status": select(_originalId in path("drafts.**") => "draft", "published"),\n  "title": coalesce(title, "Untitled"),\n  "slug": slug.current,\n  excerpt,\n  coverImage,\n  "date": coalesce(date, _updatedAt),\n  "author": author->{firstName, lastName, picture},\n\n  }\n': AllPostsQueryResult;
     '\n  *[_type == "post" && _id != $skip && defined(slug.current)] | order(date desc, _updatedAt desc) [0...$limit] {\n    \n  _id,\n  "status": select(_originalId in path("drafts.**") => "draft", "published"),\n  "title": coalesce(title, "Untitled"),\n  "slug": slug.current,\n  excerpt,\n  coverImage,\n  "date": coalesce(date, _updatedAt),\n  "author": author->{firstName, lastName, picture},\n\n  }\n': MorePostsQueryResult;
     '\n  *[_type == "post" && slug.current == $slug] [0] {\n    content[]{\n    ...,\n    markDefs[]{\n      ...,\n      \n  link {\n      ...,\n      _type == "link" => {\n        "page": page->slug.current,\n        "post": post->slug.current\n        }\n      }\n\n    }\n  },\n    \n  _id,\n  "status": select(_originalId in path("drafts.**") => "draft", "published"),\n  "title": coalesce(title, "Untitled"),\n  "slug": slug.current,\n  excerpt,\n  coverImage,\n  "date": coalesce(date, _updatedAt),\n  "author": author->{firstName, lastName, picture},\n\n  }\n': PostQueryResult;

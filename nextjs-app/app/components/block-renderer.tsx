@@ -1,6 +1,7 @@
 import React from "react";
 
 import Cta from "@/app/components/cta";
+import faqSection from "@/app/components/faq-section";
 import Info from "@/app/components/info-section";
 
 type BlocksType = {
@@ -22,6 +23,7 @@ export type BlockProps = {
 const Blocks: BlocksType = {
   callToAction: Cta,
   infoSection: Info,
+  faqSection: faqSection,
 };
 
 /**
@@ -39,7 +41,7 @@ export default function BlockRenderer({ block, index }: BlockProps) {
   // Block doesn't exist yet
   return React.createElement(
     () => (
-      <div className="w-full bg-gray-100 text-center text-gray-500 p-20 rounded">
+      <div className="w-full rounded bg-gray-100 p-20 text-center text-gray-500">
         A &ldquo;{block._type}&rdquo; block hasn&apos;t been created
       </div>
     ),

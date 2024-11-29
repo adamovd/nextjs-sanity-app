@@ -326,6 +326,66 @@
     }
   },
   {
+    "name": "faqSection",
+    "type": "type",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "_type": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string",
+            "value": "faqSection"
+          }
+        },
+        "faqs": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "array",
+            "of": {
+              "type": "object",
+              "attributes": {
+                "question": {
+                  "type": "objectAttribute",
+                  "value": {
+                    "type": "string"
+                  },
+                  "optional": false
+                },
+                "answer": {
+                  "type": "objectAttribute",
+                  "value": {
+                    "type": "string"
+                  },
+                  "optional": false
+                },
+                "_type": {
+                  "type": "objectAttribute",
+                  "value": {
+                    "type": "string",
+                    "value": "faqItem"
+                  }
+                }
+              },
+              "rest": {
+                "type": "object",
+                "attributes": {
+                  "_key": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "optional": true
+        }
+      }
+    }
+  },
+  {
     "name": "callToAction",
     "type": "type",
     "value": {
@@ -1046,7 +1106,7 @@
     }
   },
   {
-    "name": "event",
+    "name": "events",
     "type": "document",
     "attributes": {
       "_id": {
@@ -1059,7 +1119,7 @@
         "type": "objectAttribute",
         "value": {
           "type": "string",
-          "value": "event"
+          "value": "events"
         }
       },
       "_createdAt": {
@@ -1093,7 +1153,7 @@
           "type": "inline",
           "name": "slug"
         },
-        "optional": true
+        "optional": false
       },
       "eventType": {
         "type": "objectAttribute",
@@ -1177,6 +1237,23 @@
               },
               "optional": true
             },
+            "layout": {
+              "type": "objectAttribute",
+              "value": {
+                "type": "union",
+                "of": [
+                  {
+                    "type": "string",
+                    "value": "round"
+                  },
+                  {
+                    "type": "string",
+                    "value": "square"
+                  }
+                ]
+              },
+              "optional": true
+            },
             "_type": {
               "type": "objectAttribute",
               "value": {
@@ -1214,14 +1291,14 @@
               "optional": true
             }
           },
-          "dereferencesTo": "venue"
+          "dereferencesTo": "venues"
         },
         "optional": true
       }
     }
   },
   {
-    "name": "venue",
+    "name": "venues",
     "type": "document",
     "attributes": {
       "_id": {
@@ -1234,7 +1311,7 @@
         "type": "objectAttribute",
         "value": {
           "type": "string",
-          "value": "venue"
+          "value": "venues"
         }
       },
       "_createdAt": {
@@ -1332,7 +1409,7 @@
         "value": {
           "type": "string"
         },
-        "optional": true
+        "optional": false
       },
       "slug": {
         "type": "objectAttribute",
@@ -1340,14 +1417,14 @@
           "type": "inline",
           "name": "slug"
         },
-        "optional": true
+        "optional": false
       },
       "heading": {
         "type": "objectAttribute",
         "value": {
           "type": "string"
         },
-        "optional": true
+        "optional": false
       },
       "subheading": {
         "type": "objectAttribute",
@@ -1384,7 +1461,7 @@
           },
           "dereferencesTo": "person"
         },
-        "optional": true
+        "optional": false
       },
       "pageBuilder": {
         "type": "objectAttribute",
@@ -1421,6 +1498,75 @@
                 "rest": {
                   "type": "inline",
                   "name": "infoSection"
+                }
+              },
+              {
+                "type": "object",
+                "attributes": {
+                  "asset": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "object",
+                      "attributes": {
+                        "_ref": {
+                          "type": "objectAttribute",
+                          "value": {
+                            "type": "string"
+                          }
+                        },
+                        "_type": {
+                          "type": "objectAttribute",
+                          "value": {
+                            "type": "string",
+                            "value": "reference"
+                          }
+                        },
+                        "_weak": {
+                          "type": "objectAttribute",
+                          "value": {
+                            "type": "boolean"
+                          },
+                          "optional": true
+                        }
+                      },
+                      "dereferencesTo": "sanity.imageAsset"
+                    },
+                    "optional": true
+                  },
+                  "hotspot": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "inline",
+                      "name": "sanity.imageHotspot"
+                    },
+                    "optional": true
+                  },
+                  "crop": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "inline",
+                      "name": "sanity.imageCrop"
+                    },
+                    "optional": true
+                  },
+                  "_type": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "string",
+                      "value": "image"
+                    }
+                  }
+                },
+                "rest": {
+                  "type": "object",
+                  "attributes": {
+                    "_key": {
+                      "type": "objectAttribute",
+                      "value": {
+                        "type": "string"
+                      }
+                    }
+                  }
                 }
               }
             ]
@@ -1470,7 +1616,7 @@
         "value": {
           "type": "string"
         },
-        "optional": true
+        "optional": false
       },
       "slug": {
         "type": "objectAttribute",
@@ -1478,7 +1624,7 @@
           "type": "inline",
           "name": "slug"
         },
-        "optional": true
+        "optional": false
       },
       "content": {
         "type": "objectAttribute",
@@ -1562,7 +1708,7 @@
             }
           }
         },
-        "optional": true
+        "optional": false
       },
       "date": {
         "type": "objectAttribute",
@@ -1643,14 +1789,14 @@
         "value": {
           "type": "string"
         },
-        "optional": true
+        "optional": false
       },
       "lastName": {
         "type": "objectAttribute",
         "value": {
           "type": "string"
         },
-        "optional": true
+        "optional": false
       },
       "picture": {
         "type": "objectAttribute",
@@ -1719,7 +1865,7 @@
             }
           }
         },
-        "optional": true
+        "optional": false
       }
     }
   },
@@ -1741,7 +1887,7 @@
           "value": {
             "type": "string"
           },
-          "optional": true
+          "optional": false
         },
         "source": {
           "type": "objectAttribute",
@@ -1793,7 +1939,7 @@
         "value": {
           "type": "string"
         },
-        "optional": true
+        "optional": false
       },
       "description": {
         "type": "objectAttribute",
@@ -1882,7 +2028,7 @@
                         "value": {
                           "type": "string"
                         },
-                        "optional": true
+                        "optional": false
                       },
                       "_type": {
                         "type": "objectAttribute",
@@ -2573,7 +2719,7 @@
             },
             "dereferencesTo": "assist.instruction.context"
           },
-          "optional": true
+          "optional": false
         }
       }
     }
@@ -2752,7 +2898,7 @@
           "value": {
             "type": "string"
           },
-          "optional": true
+          "optional": false
         },
         "description": {
           "type": "objectAttribute",
