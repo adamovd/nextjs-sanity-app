@@ -12,10 +12,10 @@ import { SanityLive, sanityFetch } from "@/sanity/lib/live";
 import { settingsQuery } from "@/sanity/lib/queries";
 import { resolveOpenGraphImage } from "@/sanity/lib/utils";
 
+import "../styles/main.scss";
 import { handleError } from "./client-utils";
 import Footer from "./components/footer";
 import Header from "./components/header";
-import "./globals.css";
 
 /**
  * Generate metadata for the page.

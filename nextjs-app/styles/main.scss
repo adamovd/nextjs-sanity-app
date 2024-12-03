@@ -1,0 +1,7 @@
+@use "abstracts" as *;
+@use "base" as base;
+@use "components" as comp;
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
