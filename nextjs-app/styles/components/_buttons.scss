@@ -1,0 +1,71 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as mixin;
+
+.btn {
+  // Base button styles
+  align-items: center;
+  display: inline-flex;
+  box-sizing: border-box;
+  cursor: pointer;
+  justify-content: center;
+  border: 0;
+  border-radius: 100px;
+  min-height: 40px;
+  padding: 0 1rem;
+  margin-left: 0.5rem;
+  text-align: center;
+
+  // Default state
+  background-color: $dark;
+  color: $light;
+
+  // Default hover/focus/active state
+  @include mixin.button-state($light, $dark);
+
+  // Disabled state
+  &:disabled {
+    cursor: not-allowed;
+    background: rgba(0, 0, 0, 0.08);
+    color: rgba(0, 0, 0, 0.3);
+  }
+
+  // Variant styles
+  &-primary {
+    background-color: $primary;
+    color: $dark;
+
+    @include mixin.outlined-button($primary, $dark);
+    @include mixin.button-state($dark, $primary);
+  }
+
+  &-secondary {
+    background-color: $secondary;
+    color: $light;
+
+    @include mixin.outlined-button($secondary, $dark);
+    @include mixin.button-state($dark, $secondary);
+  }
+
+  &-tertiary {
+    background-color: $tertiary;
+    color: $light;
+
+    @include mixin.button-state($dark, $tertiary);
+  }
+}
+// Size variations
+.size {
+  &-small {
+    font-size: 0.875rem;
+    padding: 0 0.75rem;
+  }
+
+  &-medium {
+    font-size: 1rem;
+  }
+
+  &-large {
+    font-size: 1.35rem;
+    padding: 0.25rem 1.25rem;
+  }
+}

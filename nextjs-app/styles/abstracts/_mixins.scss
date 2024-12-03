@@ -1,0 +1,21 @@
+@use "variables" as *;
+
+@mixin button-state($bg-color, $text-color) {
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: $bg-color;
+    color: $text-color;
+  }
+}
+
+// Mixin for outlined button styles
+@mixin outlined-button($border-color, $text-color) {
+  &.outlined {
+    border: 2px solid $border-color;
+    background-color: transparent;
+    color: $border-color;
+
+    @include button-state($border-color, $text-color);
+  }
+}
