@@ -5,9 +5,10 @@ import post from './documents/post'
 import venueType from './documents/venues'
 import video from './documents/video'
 import blockContent from './objects/blockContent'
-import callToAction from './objects/callToAction'
-import faqSection from './objects/faqSection'
-import infoSection from './objects/infoSection'
+import buttonGroup from './objects/button-group'
+import callToAction from './objects/call-to-action'
+import faqSection from './objects/faq-section'
+import infoSection from './objects/info-section'
 import link from './objects/link'
 import settings from './singletons/settings'
 
@@ -29,4 +30,5 @@ export const schemaTypes = [
   callToAction,
   link,
   faqSection,
+  buttonGroup,
 ]

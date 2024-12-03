@@ -71,6 +71,19 @@ export type Geopoint = {
   alt?: number;
 };
 
+export type ButtonGroup = {
+  _type: "buttonGroup";
+  buttons?: Array<{
+    buttonText?: string;
+    link?: Link;
+    color?: "primary" | "secondary" | "tertiary";
+    style?: "outline" | "filled";
+    size?: "small" | "medium" | "large";
+    _type: "button";
+    _key: string;
+  }>;
+};
+
 export type FaqSection = {
   _type: "faqSection";
   faqs?: Array<{
@@ -87,25 +100,6 @@ export type CallToAction = {
   text?: string;
   buttonText?: string;
   link?: Link;
-};
-
-export type Link = {
-  _type: "link";
-  linkType?: "href" | "page" | "post";
-  href?: string;
-  page?: {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "page";
-  };
-  post?: {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "post";
-  };
-  openInNewTab?: boolean;
 };
 
 export type InfoSection = {
@@ -179,6 +173,16 @@ export type BlockContent = Array<{
   _key: string;
 }>;
 
+export type VideoBlogPost = {
+  _id: string;
+  _type: "videoBlogPost";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  video?: MuxVideo;
+};
+
 export type Events = {
   _id: string;
   _type: "events";
@@ -246,19 +250,32 @@ export type Page = {
     | ({
         _key: string;
       } & InfoSection)
-    | {
-        asset?: {
-          _ref: string;
-          _type: "reference";
-          _weak?: boolean;
-          [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-        };
-        hotspot?: SanityImageHotspot;
-        crop?: SanityImageCrop;
-        _type: "image";
+    | ({
         _key: string;
-      }
+      } & FaqSection)
+    | ({
+        _key: string;
+      } & ButtonGroup)
   >;
+};
+
+export type Link = {
+  _type: "link";
+  linkType?: "href" | "page" | "post";
+  href?: string;
+  page?: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "page";
+  };
+  post?: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "post";
+  };
+  openInNewTab?: boolean;
 };
 
 export type Post = {
@@ -312,12 +329,6 @@ export type Person = {
     alt?: string;
     _type: "image";
   };
-};
-
-export type Slug = {
-  _type: "slug";
-  current: string;
-  source?: string;
 };
 
 export type Settings = {
@@ -415,6 +426,106 @@ export type SanityImageMetadata = {
   blurHash?: string;
   hasAlpha?: boolean;
   isOpaque?: boolean;
+};
+
+export type MediaTag = {
+  _id: string;
+  _type: "media.tag";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: Slug;
+};
+
+export type Slug = {
+  _type: "slug";
+  current: string;
+  source?: string;
+};
+
+export type MuxVideo = {
+  _type: "mux.video";
+  asset?: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "mux.videoAsset";
+  };
+};
+
+export type MuxVideoAsset = {
+  _type: "mux.videoAsset";
+  status?: string;
+  assetId?: string;
+  playbackId?: string;
+  filename?: string;
+  thumbTime?: number;
+  data?: MuxAssetData;
+};
+
+export type MuxAssetData = {
+  _type: "mux.assetData";
+  resolution_tier?: string;
+  upload_id?: string;
+  created_at?: string;
+  id?: string;
+  status?: string;
+  max_stored_resolution?: string;
+  passthrough?: string;
+  encoding_tier?: string;
+  master_access?: string;
+  aspect_ratio?: string;
+  duration?: number;
+  max_stored_frame_rate?: number;
+  mp4_support?: string;
+  max_resolution_tier?: string;
+  tracks?: Array<
+    {
+      _key: string;
+    } & MuxTrack
+  >;
+  playback_ids?: Array<
+    {
+      _key: string;
+    } & MuxPlaybackId
+  >;
+  static_renditions?: MuxStaticRenditions;
+};
+
+export type MuxStaticRenditions = {
+  _type: "mux.staticRenditions";
+  status?: string;
+  files?: Array<
+    {
+      _key: string;
+    } & MuxStaticRenditionFile
+  >;
+};
+
+export type MuxStaticRenditionFile = {
+  _type: "mux.staticRenditionFile";
+  ext?: string;
+  name?: string;
+  width?: number;
+  bitrate?: number;
+  filesize?: number;
+  height?: number;
+};
+
+export type MuxPlaybackId = {
+  _type: "mux.playbackId";
+  id?: string;
+  policy?: string;
+};
+
+export type MuxTrack = {
+  _type: "mux.track";
+  id?: string;
+  type?: string;
+  max_width?: number;
+  max_frame_rate?: number;
+  duration?: number;
+  max_height?: number;
 };
 
 export type SanityAssistInstructionTask = {
@@ -558,23 +669,33 @@ export type AllSanitySchemaTypes =
   | SanityImageDimensions
   | SanityFileAsset
   | Geopoint
+  | ButtonGroup
   | FaqSection
   | CallToAction
-  | Link
   | InfoSection
   | BlockContent
+  | VideoBlogPost
   | Events
   | Venues
   | Page
+  | Link
   | Post
   | Person
-  | Slug
   | Settings
   | SanityImageCrop
   | SanityImageHotspot
   | SanityImageAsset
   | SanityAssetSourceData
   | SanityImageMetadata
+  | MediaTag
+  | Slug
+  | MuxVideo
+  | MuxVideoAsset
+  | MuxAssetData
+  | MuxStaticRenditions
+  | MuxStaticRenditionFile
+  | MuxPlaybackId
+  | MuxTrack
   | SanityAssistInstructionTask
   | SanityAssistTaskStatus
   | SanityAssistSchemaTypeAnnotations
@@ -641,6 +762,19 @@ export type GetPageQueryResult = {
   pageBuilder: Array<
     | {
         _key: string;
+        _type: "buttonGroup";
+        buttons?: Array<{
+          buttonText?: string;
+          link?: Link;
+          color?: "primary" | "secondary" | "tertiary";
+          style?: "filled" | "outline";
+          size?: "large" | "medium" | "small";
+          _type: "button";
+          _key: string;
+        }>;
+      }
+    | {
+        _key: string;
         _type: "callToAction";
         heading?: string;
         text?: string;
@@ -655,16 +789,14 @@ export type GetPageQueryResult = {
         } | null;
       }
     | {
-        asset?: {
-          _ref: string;
-          _type: "reference";
-          _weak?: boolean;
-          [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-        };
-        hotspot?: SanityImageHotspot;
-        crop?: SanityImageCrop;
-        _type: "image";
         _key: string;
+        _type: "faqSection";
+        faqs?: Array<{
+          question: string;
+          answer: string;
+          _type: "faqItem";
+          _key: string;
+        }>;
       }
     | {
         _key: string;
