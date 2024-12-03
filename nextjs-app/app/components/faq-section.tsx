@@ -6,18 +6,18 @@ type FAQProps = {
 };
 const faqSection = ({ block }: FAQProps) => {
   return (
-    <div className="faq-block">
+    <section className="faq-block">
       {block.faqs?.map((faq, index) => (
         <details key={index} className="faq-item">
           <summary>
             <h3 className="faq-question">{faq.question}</h3>
           </summary>
-          <div className="faq-answer">
+          <section className="faq-answer">
             <p>{faq.answer} </p>
-          </div>
+          </section>
         </details>
       ))}
-    </div>
+    </section>
   );
 };
 

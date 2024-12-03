@@ -1,5 +1,6 @@
 import React from "react";
 
+import buttonGroup from "@/app/components/button-group";
 import Cta from "@/app/components/cta";
 import faqSection from "@/app/components/faq-section";
 import Info from "@/app/components/info-section";
@@ -24,6 +25,7 @@ const Blocks: BlocksType = {
   callToAction: Cta,
   infoSection: Info,
   faqSection: faqSection,
+  buttonGroup: buttonGroup,
 };
 
 /**

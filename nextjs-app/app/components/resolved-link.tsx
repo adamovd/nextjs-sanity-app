@@ -1,6 +1,6 @@
-import { Link as SanityLink } from "@/sanity.types";
-import { linkResolver } from "@/sanity/lib/utils";
 import Link from "next/link";
+
+import { Link as SanityLink } from "@/sanity.types";
 
 interface ResolvedLinkProps {
   link: SanityLink | undefined;
@@ -13,13 +13,12 @@ export default function ResolvedLink({
   children,
   className,
 }: ResolvedLinkProps) {
-  const resolvedLink = linkResolver(link);
-  if (typeof resolvedLink === "string") {
+  if (link?.href) {
     return (
       <Link
-        href={resolvedLink}
-        target={link?.openInNewTab ? "_blank" : undefined}
-        rel={link?.openInNewTab ? "noopener noreferrer" : undefined}
+        href={link.href}
+        target={link.openInNewTab ? "_blank" : undefined}
+        rel={link.openInNewTab ? "noopener noreferrer" : undefined}
         className={className}
       >
         {children}
